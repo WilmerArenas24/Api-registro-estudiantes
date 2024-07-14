@@ -114,7 +114,7 @@ app.delete('/notas/:id/aprobados', (pedido, respuesta) => {
                     .then(respuesta.send(respuesta))
                     .catch((error) => respuesta.send(error))
             }else{
-                console.log('Sin alumnos aprobados');
+                console.log('Sin alumnos aprobados');   
             }
 
         })
