@@ -100,6 +100,20 @@ app.delete('/notas/:id/delete', (pedido, respuesta) => {
         })
 })
 
+//Definir methodo GET oara las notas aprobadas
+app.delete('/notas/:id/aprobados', (pedido, respuesta) => {
+    //Pedir listado users
+    mongoDB.conexionDB()
+        .then((conexion) => {
+            const idNota = (pedido.params.id);
+            const controlador = conexion.db().collection('notas');
+            filtro = { id: idNota };
+            controlador.deleteOne(filtro)
+                .then(respuesta.send(respuesta))
+                .catch((error) => respuesta.send(error))
+        })
+})
+
 
 
 //Inicciar ell servidor en el puerto 3000
