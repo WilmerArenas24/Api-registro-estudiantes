@@ -107,10 +107,16 @@ app.delete('/notas/:id/aprobados', (pedido, respuesta) => {
         .then((conexion) => {
             const idNota = (pedido.params.id);
             const controlador = conexion.db().collection('notas');
-            filtro = { id: idNota };
-            controlador.deleteOne(filtro)
-                .then(respuesta.send(respuesta))
-                .catch((error) => respuesta.send(error))
+
+            if(idNota>6){
+                filtro = { id: idNota };
+                controlador.deleteOne(filtro)
+                    .then(respuesta.send(respuesta))
+                    .catch((error) => respuesta.send(error))
+            }else{
+                console.log('Sin alumnos aprobados');
+            }
+
         })
 })
 
